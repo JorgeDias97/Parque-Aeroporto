@@ -58,7 +58,8 @@ export default function ParqueFiltros({
               <option value="padrao">Recomendados / Padrão</option>
               <option value="preco-asc">Preço: Mais barato primeiro</option>
               <option value="preco-desc">Preço: Mais caro primeiro</option>
-              <option value="avaliacao-desc">Melhor Avaliação (★)</option>
+              <option value="avaliacao-desc">Avaliação: Melhor primeiro </option>
+              <option value="avaliacao-asc">Avaliação: Pior primeiro</option>
               <option value="distancia-asc">Mais perto do Terminal</option>
             </select>
           </div>
