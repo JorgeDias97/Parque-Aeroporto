@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import MensagemErro from "../components/MensagemErro";
 import BotaoFavorito from "../components/BotaoFavorito";
+import FormularioReserva from "../components/FormularioReserva";
+import { API } from "../services/api";
 
-const API = "http://localhost:3001/parqueaeroporto"; // temporário, até existir services/api.js
-
-function ParqueDetalhe({ id, eFavorito, alternarFavorito }) {
+function ParqueDetalhe({ eFavorito, alternarFavorito }) {
+    const { id } = useParams();
     const [parque, setParque] = useState(null);
     const [aCarregar, setACarregar] = useState(true);
     const [erro, setErro] = useState(null);
@@ -15,7 +17,6 @@ function ParqueDetalhe({ id, eFavorito, alternarFavorito }) {
             setACarregar(true);
             setErro(null);
             try {
-
                 const resposta = await fetch(`${API}/itens/${id}`);
                 const dados = await resposta.json();
                 if (!resposta.ok) {
@@ -64,9 +65,12 @@ function ParqueDetalhe({ id, eFavorito, alternarFavorito }) {
                 {parque.carregamentoEletrico && <li>Carregamento elétrico</li>}
                 {parque.videovigilancia && <li>Videovigilância</li>}
             </ul>
+
+            <div className="mt-8 bg-gray-50 p-6 rounded-lg border">
+                <FormularioReserva parque={parque} />
+            </div>
         </div>
     );
-
 }
 
 export default ParqueDetalhe;

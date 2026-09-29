@@ -1,5 +1,6 @@
 //criar um hook para pegar os parques do banco de dados e retornar em um array de objetos
 import { useState, useEffect } from 'react';
+import { API } from '../services/api';
 
 export default function useParques() {
     const [parques, setParques] = useState([]);
@@ -9,7 +10,7 @@ export default function useParques() {
     useEffect(() => {
         const fetchParques = async () => {
             try {
-                const response = await fetch('http://localhost:3001/parqueaeroporto/itens');
+                const response = await fetch(`${API}/itens`);
                 if (!response.ok) {
                     throw new Error('Erro ao buscar os parques');
                 }

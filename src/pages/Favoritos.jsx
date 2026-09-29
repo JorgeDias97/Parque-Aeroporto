@@ -2,9 +2,7 @@ import { useState, useEffect } from "react";
 import Loading from "../components/Loading";
 import MensagemErro from "../components/MensagemErro";
 import BotaoFavorito from "../components/BotaoFavorito";
-
-
-const API = "http://localhost:3001/parqueaeroporto"; // temporário
+import { API } from "../services/api";
 
 function Favoritos({ favoritos, eFavorito, alternarFavorito }) {
     const [parques, setParques] = useState([]);
@@ -66,3 +64,4 @@ function Favoritos({ favoritos, eFavorito, alternarFavorito }) {
 }
 
 export default Favoritos;
+

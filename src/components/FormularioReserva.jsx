@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { contarDiasReserva, getHojeFormatado } from '../utils/datas';
+import { API } from '../services/api';
 
 const FormularioReserva = ({ parque }) => {
     const [dataInicio, setDataInicio] = useState('');
@@ -25,47 +26,40 @@ const FormularioReserva = ({ parque }) => {
         }
     }, [dataInicio, dataFim, parque]);
 
-const handleSubmit = async (e) => {
-    e.preventDefault();
-    setMensagemErro('');
-    setMensagemSucesso('');
-    
-    if (quantidade > parque.capacidade) {
-        setMensagemErro(`A quantidade de pessoas excede a capacidade do parque (${parque.capacidade}).`);
-        return;
-    }
-
-    try {
-        const reserva = {
-            itemId: Number(parque.id),
-            dataInicio,
-            dataFim,
-            quantidade: Number(quantidade),
-            nome,
-            email,
-        };
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setMensagemErro('');
+        setMensagemSucesso('');
         
-      /* 
-      // Código para o fetch, comentado até o Bruno criar a base da API:
-      const response = await fetch(`http://localhost:3001/reservas`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(reserva)
-      });
+        if (quantidade > parque.capacidade) {
+            setMensagemErro(`A quantidade de pessoas excede a capacidade do parque (${parque.capacidade}).`);
+            return;
+        }
 
-      const data = await response.json();
+        try {
+            const reserva = {
+                itemId: Number(parque.id),
+                dataInicio,
+                dataFim,
+                quantidade: Number(quantidade),
+                nome,
+                email,
+            };
+            
+          const response = await fetch(`${API}/reservas`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(reserva)
+          });
 
-      // Regra da API: Os erros vêm como { erro: "..." }
-      if (!response.ok) {
-        setMensagemErro(data.erro);
-        return;
-      } else {
-        setMensagemSucesso('Reserva efetuada com sucesso!');
-      }
-      */
-     console.log("A enviar POST da reserva:", reserva);
-     // Simulação de sucesso até haver API
-     setMensagemSucesso('Reserva efetuada com sucesso! (Simulação)');
+          const data = await response.json();
+
+          if (!response.ok) {
+            setMensagemErro(data.erro);
+            return;
+          } else {
+            setMensagemSucesso('Reserva efetuada com sucesso!');
+          }
      
     } catch (error) {
       // Regra da API: Para o caso de a API estar desligada
