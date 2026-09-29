@@ -160,7 +160,7 @@ export default function ParqueCard({ parque }) {
           </div>
 
           <Link
-            to={`/parques/${parque.id}`}
+            to={`/parque/${parque.id}`}
             className="btn-detalhes"
             title={`Ver detalhes e calcular reserva de ${parque.nome}`}
           >
