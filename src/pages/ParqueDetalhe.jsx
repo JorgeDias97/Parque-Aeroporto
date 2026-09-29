@@ -1,14 +1,14 @@
 import { useState, useEffect } from "react";
 import Loading from "../components/Loading";
 import MensagemErro from "../components/MensagemErro";
+import BotaoFavorito from "../components/BotaoFavorito";
 
 const API = "http://localhost:3001/parqueaeroporto"; // temporário, até existir services/api.js
 
-function ParqueDetalhe({ id }) {
+function ParqueDetalhe({ id, eFavorito, alternarFavorito }) {
     const [parque, setParque] = useState(null);
     const [aCarregar, setACarregar] = useState(true);
     const [erro, setErro] = useState(null);
-
 
     useEffect(() => {
         async function carregarParque() {
@@ -43,6 +43,10 @@ function ParqueDetalhe({ id }) {
     return (
         <div className="parque-detalhe">
             <h1>{parque.nome}</h1>
+            <BotaoFavorito
+                ativo={eFavorito(parque.id)}
+                aoAlternar={() => alternarFavorito(parque.id)}
+            />
             <p>{parque.descricao}</p>
             <p>Categoria: {parque.categoria}</p>
             <p>Localização: {parque.localizacao}</p>
