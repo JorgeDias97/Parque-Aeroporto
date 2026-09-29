@@ -12,8 +12,6 @@ export default function useParques() {
                 const response = await fetch('http://localhost:3001/parqueaeroporto/itens');
                 if (!response.ok) {
                     throw new Error('Erro ao buscar os parques');
-                    setLoading(false);
-                    setError(error.message);
                 }
                 const data = await response.json();
                 setParques(data);
