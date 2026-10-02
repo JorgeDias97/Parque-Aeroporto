@@ -1,0 +1,109 @@
+﻿.container {
+  width: 100%;
+  max-width: 77.5rem;
+  padding: 1.5rem 1.25rem 3.75rem 1.25rem;
+  box-sizing: border-box;
+  margin-top: 1.25rem;
+  background-color: var(--color-surface);
+  padding: 2rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 0.625rem 1.5625rem -0.3125rem rgba(0, 0, 0, 0.05);
+  border-top: 0.25rem solid var(--color-accent);
+}
+
+.titulo {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary-dark);
+  margin-bottom: 1.5rem;
+  margin-top: 0;
+}
+
+.filtroContainer {
+  margin-bottom: 1.5rem;
+}
+
+.inputFiltro {
+  border: 0.0625rem solid var(--color-accent-soft);
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  width: 100%;
+  max-width: 25rem;
+  font-size: 0.9375rem;
+  color: var(--color-text-main);
+  background-color: var(--color-surface);
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.inputFiltro:focus {
+  border-color: var(--color-accent);
+  background-color: var(--color-surface);
+  box-shadow: 0 0 0 0.1875rem rgba(66, 117, 165, 0.15);
+}
+
+.vazio {
+  color: var(--color-text-light);
+  font-size: 1rem;
+}
+
+.gridReservas {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(18.75rem, 1fr));
+}
+
+.cartaoReserva {
+  border: 0.0625rem solid var(--color-accent-soft);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  background-color: var(--color-surface);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.cartaoReserva:hover {
+  transform: translateY(-0.125rem);
+  box-shadow: 0 0.625rem 0.9375rem -0.1875rem rgba(0, 0, 0, 0.1);
+  background-color: var(--color-surface);
+}
+
+.reservaId {
+  font-weight: 700;
+  font-size: 1.125rem;
+  color: var(--color-primary-dark);
+  margin-top: 0;
+  margin-bottom: 0.75rem;
+}
+
+.reservaDetalhe {
+  margin: 0.25rem 0;
+  font-size: 0.875rem;
+  color: var(--color-text-main);
+}
+
+.reservaDetalhe strong {
+  color: var(--color-text-light);
+  font-weight: 600;
+}
+
+.btnCancelar {
+  margin-top: 1.25rem;
+  background-color: #ef4444;
+  color: var(--color-surface);
+  border: none;
+  padding: 0.625rem 1rem;
+  border-radius: 0.5rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btnCancelar:hover {
+  background-color: #dc2626;
+}
+
+
+
