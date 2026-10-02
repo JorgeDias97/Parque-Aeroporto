@@ -1,4 +1,3 @@
-//criar um hook para pegar os parques do banco de dados e retornar em um array de objetos
 import { useState, useEffect } from 'react';
 import { API } from '../services/api';
 

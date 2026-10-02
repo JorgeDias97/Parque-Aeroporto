@@ -1,0 +1,38 @@
+﻿.botao {
+  display: inline-grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding: 0;
+  border: 0.0625rem solid var(--color-border);
+  border-radius: 50%;
+  background: var(--color-surface);
+  color: var(--color-text-light);
+  cursor: pointer;
+  transition: color 0.2s ease, border-color 0.2s ease, background-color 0.2s ease, transform 0.15s ease;
+}
+
+.botao:hover {
+  color: #e5484d;
+  border-color: #e5484d;
+}
+
+.botao:active {
+  transform: scale(0.92);
+}
+
+.botao:focus-visible {
+  outline: 0.125rem solid var(--color-accent);
+  outline-offset: 0.125rem;
+}
+
+.icone {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.ativo {
+  color: #e5484d;
+  border-color: #e5484d;
+  background: #fff1f1;
+}
