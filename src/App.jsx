@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Layout from './components/Layout';
 import Parques from './pages/Parques';
 import Favoritos from './pages/Favoritos';
@@ -6,6 +6,7 @@ import ParqueDetalhe from './pages/ParqueDetalhe';
 import MinhasReservas from './pages/MinhasReservas';
 import NaoEncontrado from './pages/NaoEncontrado';
 import useFavoritos from './hooks/useFavoritos';
+import './App.css';
 
 function App() {
   const { favoritos, alternarFavorito, eFavorito } = useFavoritos();
@@ -42,3 +43,4 @@ function App() {
 }
 
 export default App;
+

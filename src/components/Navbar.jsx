@@ -1,18 +1,22 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
+import styles from './Navbar.module.css';
 
 const Navbar = () => {
+  const classeLink = ({ isActive }) =>
+    `${styles.navItem} ${isActive ? styles.navItemActive : ''}`;
+
   return (
-    <nav className="bg-primary text-accent shadow-md">
-      <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-        <div className="text-2xl font-bold tracking-wide">
-          <Link to="/" className="hover:text-white transition-colors duration-200">
-            <h2>Parque Aeroporto</h2>
+    <nav className={styles.navbar}>
+      <div className={styles.container}>
+        <div className={styles.brand}>
+          <Link to="/" className={styles.brandLink}>
+            Parque Aeroporto
           </Link>
         </div>
-        <ul className="flex space-x-8 font-semibold">
-          <li><Link to="/" className="hover:text-white transition-colors duration-200">Parques</Link></li>
-          <li><Link to="/favoritos" className="hover:text-white transition-colors duration-200">Favoritos</Link></li>
-          <li><Link to="/reservas" className="hover:text-white transition-colors duration-200">Reservas</Link></li>
+        <ul className={styles.navLinks}>
+          <li><NavLink to="/" end className={classeLink}>Parques</NavLink></li>
+          <li><NavLink to="/favoritos" className={classeLink}>Favoritos</NavLink></li>
+          <li><NavLink to="/reservas" className={classeLink}>Reservas</NavLink></li>
         </ul>
       </div>
     </nav>

@@ -1,8 +1,10 @@
+import styles from './Footer.module.css';
+
 const Footer = () => {
   const anoAtual = new Date().getFullYear();
   
   return (
-    <footer className="bg-primary text-accent/80 py-6 text-center mt-auto shadow-inner">
+    <footer className={styles.footer}>
       <p>&copy; {anoAtual} Parque Aeroporto. Plataforma de reservas.</p>
     </footer>
   );

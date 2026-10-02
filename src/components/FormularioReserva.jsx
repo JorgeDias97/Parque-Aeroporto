@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { contarDiasReserva, getHojeFormatado } from '../utils/datas';
 import { API } from '../services/api';
+import styles from './FormularioReserva.module.css';
 
 const FormularioReserva = ({ parque }) => {
+    const navigate = useNavigate();
     const [dataInicio, setDataInicio] = useState('');
     const [dataFim, setDataFim] = useState('');
     const [quantidade, setQuantidade] = useState(1);
@@ -59,10 +62,12 @@ const FormularioReserva = ({ parque }) => {
             return;
           } else {
             setMensagemSucesso('Reserva efetuada com sucesso!');
+            setTimeout(() => {
+                navigate('/reservas');
+            }, 1500);
           }
      
     } catch (error) {
-      // Regra da API: Para o caso de a API estar desligada
       setMensagemErro('Erro ao contactar o servidor. Tente novamente mais tarde.');
     }
   };
@@ -70,35 +75,38 @@ const FormularioReserva = ({ parque }) => {
   if (!parque) return <p>A carregar formulário...</p>;
 
   return (
-    <div className="formulario-reserva">
-      <h3>Fazer Reserva</h3>
-      {mensagemErro && <div className="erro">{mensagemErro}</div>}
-      {mensagemSucesso && <div className="sucesso">{mensagemSucesso}</div>}
+    <div className={styles.formularioContainer}>
+      <h3 className={styles.titulo}>Fazer Reserva</h3>
+      {mensagemErro && <div className={styles.mensagemErro}>{mensagemErro}</div>}
+      {mensagemSucesso && <div className={styles.mensagemSucesso}>{mensagemSucesso}</div>}
 
-      <form onSubmit={handleSubmit}>
-        <label>
-            Data de Início:
+      <form onSubmit={handleSubmit} className={styles.formGrid}>
+        <div className={styles.formGroup}>
+            <label className={styles.label}>Data de Início</label>
             <input
+                className={styles.input}
                 type="date"
                 value={dataInicio}
                 onChange={(e) => setDataInicio(e.target.value)}
                 min={getHojeFormatado()}
             required
             />
-        </label>
-        <label>
-            Data de Fim:
+        </div>
+        <div className={styles.formGroup}>
+            <label className={styles.label}>Data de Fim</label>
             <input
+                className={styles.input}
                 type="date"
                 value={dataFim}
                 onChange={(e) => setDataFim(e.target.value)}
                 min={dataInicio || getHojeFormatado()}
                 required
             />
-        </label>
-        <label>
-            Quantidade de Pessoas:
+        </div>
+        <div className={styles.formGroupFull}>
+            <label className={styles.label}>Quantidade de Pessoas</label>
             <input
+                className={styles.input}
                 type="number"
                 value={quantidade}
                 onChange={(e) => setQuantidade(e.target.value)}
@@ -106,27 +114,34 @@ const FormularioReserva = ({ parque }) => {
                 max={parque.capacidade}
                 required
             />
-        </label>
-        <label>
-            Nome:
+        </div>
+        <div className={styles.formGroupFull}>
+            <label className={styles.label}>Nome Completo</label>
             <input
+                className={styles.input}
                 type="text"
                 value={nome}
                 onChange={(e) => setNome(e.target.value)}
                 required
             />
-        </label>
-        <label>
-            Email:
+        </div>
+        <div className={styles.formGroupFull}>
+            <label className={styles.label}>Email</label>
             <input
+                className={styles.input}
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
             />
-        </label>
-        <p>Preço Estimado: {precoEstimado.toFixed(2)} €</p>
-        <button type="submit">Reservar</button>
+        </div>
+        
+        <div className={styles.precoContainer}>
+            <span className={styles.precoLabel}>Preço Estimado</span>
+            <span className={styles.precoValor}>{precoEstimado.toFixed(2)} €</span>
+        </div>
+        
+        <button type="submit" className={styles.btnReservar}>Reservar Parque</button>
       </form>
     </div>
   );

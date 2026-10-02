@@ -1,0 +1,16 @@
+﻿.layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.main {
+  flex-grow: 1;
+  width: 100%;
+  max-width: 75rem;
+  margin: 0 auto;
+  padding: 6.25rem 1.5rem 2rem 1.5rem;
+}
+
+
+
